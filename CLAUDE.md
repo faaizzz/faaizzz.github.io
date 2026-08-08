@@ -71,7 +71,7 @@ All sections live inside `index.html` as sequential `<div>` blocks with anchor I
 7. **`#portfolio`** — Masonry grid of 8 portfolio items with BigPicture lightbox
 8. **`#experience`** — 4 Bootstrap cards with job/role history
 9. **`#testimonials`** — 4 client quote blocks
-10. **`#contact`** — Contact form (Formspree), contact details sidebar
+10. **`#contact`** — Contact form (submits via fetch to a self-hosted relay service, see below), contact details sidebar
 11. **Footer** — name, tagline, social links, copyright
 12. **`#scrolltop`** — floating scroll-to-top button (appears after scrolling down)
 
@@ -120,7 +120,7 @@ python3 -m http.server 8080
 - **Skills**: Update `style="width: X%"` and `aria-valuenow="X"` on `.progress-bar` elements in `#skills`.
 - **Portfolio items**: Replace images in `images/portfolio/` and update `<img src>` and `<a href>` in `#portfolio`.
 - **Social links**: Update `href` on `<a>` tags in the hero `.social-nav` and footer `.social-nav`.
-- **Contact form**: Replace `https://formspree.io/your@email.com` with a real Formspree endpoint.
+- **Contact form**: `#contact-form` in `index.html` has no `action`/`method` — `scripts/main.js` intercepts `submit` and POSTs JSON to `https://contact.razizu.cloud/submit`, a small self-hosted FastAPI service (`ruhrlabs/contact-relay`) that relays to email via Gmail SMTP. Manifests and the public-route decision live in `ruhrlabs/iac` (`k8s/base/contact-relay/`, `docs/memory/contact-relay-public-no-auth.md`). The hidden `company` field is a honeypot — never remove it or give it a visible label.
 - **Page title / site name**: Update `<title>` in `<head>` and `.site-title` link text in the navbar.
 
 ### Making Style Changes
@@ -132,11 +132,9 @@ Push to the `master` or `main` branch — GitHub Pages automatically serves from
 
 ## Known Issues / Notes
 
-- The contact section's right-column contact details still contain **template placeholder values** (`walter@company.com`, `username@skype.com`, `+0718-111-0011`) that should be updated to real info.
-- The footer still references the **template author name "Walter Patterson"** and template social links — these should be updated to Faaiz's details.
-- Some experience and testimonials sections contain **boilerplate lorem-ipsum-style content** that should be replaced with real experience/testimonials.
 - `purecounter.min.js` is loaded but no counter elements (`data-purecounter-*`) exist in the HTML — it can be removed if not needed, or used to add animated stats.
-- Portfolio grid items currently link to generic external sites (Dribbble, GitHub, SoundCloud, etc.) rather than actual projects.
+- `images/avatar.jpg` is still the original template's stock photo, not a real photo of Faaiz — swap it for an actual headshot.
+- The `#portfolio` section (`id="portfolio"`, headed "Key Achievements") no longer uses the Masonry/BigPicture photo-gallery grid — it's a plain icon-tile grid now. `scripts/masonry.pkgd.min.js`, `scripts/imagesloaded.pkgd.min.js`, and `scripts/BigPicture.min.js` are still loaded but currently unused (the `.grid`/`.bp-gallery` selectors they target no longer exist in the HTML); safe to remove if no photo gallery is reintroduced.
 
 ## Branch Strategy
 

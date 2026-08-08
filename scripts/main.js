@@ -88,6 +88,53 @@
     )
   }))
 
+  /**
+   * Contact form — submits via fetch to the contact-relay service instead
+   * of navigating away, so we can show inline success/error state.
+   */
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    const status = document.getElementById('contact-form-status');
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      status.textContent = 'Sending…';
+      status.className = 'mt-2 text-small text-muted';
+
+      const payload = {
+        name: contactForm.name.value,
+        email: contactForm.email.value,
+        message: contactForm.message.value,
+        company: contactForm.company.value
+      };
+
+      try {
+        const res = await fetch('https://contact.razizu.cloud/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          status.textContent = "Thanks! I'll get back to you soon.";
+          status.className = 'mt-2 text-small text-success';
+          contactForm.reset();
+        } else {
+          const body = await res.json().catch(() => ({}));
+          status.textContent = body.detail || 'Something went wrong — please try again.';
+          status.className = 'mt-2 text-small text-danger';
+        }
+      } catch (err) {
+        status.textContent = 'Could not reach the server — please try again later.';
+        status.className = 'mt-2 text-small text-danger';
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  }
+
   // Add your javascript here
 
 
