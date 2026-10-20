@@ -269,3 +269,32 @@ footer a:not(.nav-link) {
 .entry-title a {
   text-decoration: none;
 }
+
+/* Featured projects */
+.project-card {
+  overflow: hidden;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.project-media {
+  background-color: #f8f9fa;
+}
+
+.project-media img {
+  border-radius: 0.25rem;
+}
+
+.project-highlights {
+  padding-left: 1.1rem;
+}
+
+.project-highlights li {
+  margin-bottom: 0.35rem;
+}
+
+.project-tag {
+  background-color: #eef2ff;
+  color: #3b4a6b;
+  font-weight: 600;
+  margin: 0 0.35rem 0.35rem 0;
+}
