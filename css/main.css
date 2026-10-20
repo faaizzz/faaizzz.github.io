@@ -298,3 +298,12 @@ footer a:not(.nav-link) {
   font-weight: 600;
   margin: 0 0.35rem 0.35rem 0;
 }
+
+.project-video {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 0.5rem;
+  background-color: #1b1740;
+}

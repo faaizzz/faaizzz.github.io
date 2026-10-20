@@ -66,7 +66,7 @@ All sections live inside `index.html` as sequential `<div>` blocks with anchor I
 2. **Navbar** — `#header-nav` — sticky on scroll, links to all sections
 3. **Hero** — `<header>` inside `#content` — intro with name, title, social links, CTA button
 4. **`#about`** — bio text, personal details table, avatar photo
-5. **`#projects`** — "Featured Projects": one `.project-card` per open-source project (image, summary, highlights, tech tags, GitHub link); AI Gateway first, then BYOP. Images live in `images/projects/`
+5. **`#projects`** — "Featured Projects": one `.project-card` per open-source project (image or demo video, summary, highlights, tech tags, GitHub link); AI Gateway first, then BYOP. Images live in `images/projects/`
 6. **`#services`** — 4-column icon grid (Front End, Back End, Cloud, Database)
 7. **`#skills`** — Bootstrap progress bars showing proficiency percentages
 8. **`#portfolio`** — "Key Achievements" icon-tile grid
