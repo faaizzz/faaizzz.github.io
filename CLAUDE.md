@@ -66,14 +66,15 @@ All sections live inside `index.html` as sequential `<div>` blocks with anchor I
 2. **Navbar** — `#header-nav` — sticky on scroll, links to all sections
 3. **Hero** — `<header>` inside `#content` — intro with name, title, social links, CTA button
 4. **`#about`** — bio text, personal details table, avatar photo
-5. **`#services`** — 4-column icon grid (Front End, Back End, Cloud, Database)
-6. **`#skills`** — Bootstrap progress bars showing proficiency percentages
-7. **`#portfolio`** — Masonry grid of 8 portfolio items with BigPicture lightbox
-8. **`#experience`** — 4 Bootstrap cards with job/role history
-9. **`#testimonials`** — 4 client quote blocks
-10. **`#contact`** — Contact form (submits via fetch to a self-hosted relay service, see below), contact details sidebar
-11. **Footer** — name, tagline, social links, copyright
-12. **`#scrolltop`** — floating scroll-to-top button (appears after scrolling down)
+5. **`#projects`** — "Featured Projects": one `.project-card` per open-source project (image, summary, highlights, tech tags, GitHub link); AI Gateway first, then BYOP. Images live in `images/projects/`
+6. **`#services`** — 4-column icon grid (Front End, Back End, Cloud, Database)
+7. **`#skills`** — Bootstrap progress bars showing proficiency percentages
+8. **`#portfolio`** — "Key Achievements" icon-tile grid
+9. **`#experience`** — 4 Bootstrap cards with job/role history
+10. **`#certifications`** — certifications and education
+11. **`#contact`** — Contact form (submits via fetch to a self-hosted relay service, see below), contact details sidebar
+12. **Footer** — name, tagline, social links, copyright
+13. **`#scrolltop`** — floating scroll-to-top button (appears after scrolling down)
 
 ## Key Conventions
 
@@ -118,6 +119,7 @@ python3 -m http.server 8080
 ### Making Content Changes
 - **Text/bio/contact info**: Edit the relevant section in `index.html`.
 - **Skills**: Update `style="width: X%"` and `aria-valuenow="X"` on `.progress-bar` elements in `#skills`.
+- **Featured projects**: Copy a `.project-card` block in `#projects`, put its picture in `images/projects/`; style lives under `/* Featured projects */` in `css/main.css`.
 - **Portfolio items**: Replace images in `images/portfolio/` and update `<img src>` and `<a href>` in `#portfolio`.
 - **Social links**: Update `href` on `<a>` tags in the hero `.social-nav` and footer `.social-nav`.
 - **Contact form**: `#contact-form` in `index.html` has no `action`/`method` — `scripts/main.js` intercepts `submit` and POSTs JSON to `https://contact.razizu.cloud/submit`, a small self-hosted FastAPI service (`ruhrlabs/contact-relay`) that relays to email via Gmail SMTP. Manifests and the public-route decision live in `ruhrlabs/iac` (`k8s/base/contact-relay/`, `docs/memory/contact-relay-public-no-auth.md`). The hidden `company` field is a honeypot — never remove it or give it a visible label.

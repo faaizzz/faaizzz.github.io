@@ -34,6 +34,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto me-2">
               <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+              <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
               <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
               <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
               <li class="nav-item"><a class="nav-link" href="#portfolio">Achievements</a></li>
@@ -62,6 +63,7 @@
                 <ul class="nav justify-content-left">
                   <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/faaiz.rissad" title="Instagram"><i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span></a></li>
                   <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/faaiz-rissad/" title="LinkedIn"><i class="fab fa-linkedin"></i><span class="menu-title sr-only">LinkedIn</span></a></li>
+                  <li class="nav-item"><a class="nav-link" href="https://github.com/faaizzz" title="GitHub"><i class="fab fa-github"></i><span class="menu-title sr-only">GitHub</span></a></li>
                 </ul>
               </nav>
             </div>
@@ -79,6 +81,7 @@
       <div class="col-md-6">
         <h2 class="h4 my-2">Hello! I’m Faaiz K Rissad.</h2>
         <p>GenAI Platform Engineer with 11 years of engineering experience, specialising in designing and operating enterprise-scale AI platforms on Microsoft Azure. I currently architect and maintain the AI infrastructure at ALDI DX, including an enterprise-grade AI Gateway and the core infrastructure behind ALDI GPT, an internal enterprise AI assistant. Deep hands-on expertise in Azure AI Foundry, APIM, AKS, and GitOps, with a strong focus on LLM governance, observability, and Infrastructure-as-Code. Certified Microsoft Azure AI Engineer Associate.</p>
+        <p>Outside work I build open source: a governed <a href="#projects">AI Gateway on AWS with LiteLLM</a> and <a href="#projects">BYOP</a>, a self-hosted AI podcast generator.</p>
         <div class="row mt-3">
           <div class="col-sm-2">
             <div class="pb-1">Role:</div>
@@ -113,6 +116,54 @@
         </div>
       </div>
       <div class="col-md-5 offset-md-1" data-aos="fade-left" data-aos-delay="100"><img class="avatar img-fluid mt-2" src="images/avatar.jpg" width="400" height="400" alt="Faaiz K Rissad"/></div>
+    </div>
+  </div>
+</div>
+<div class="section px-3 px-lg-4 pt-5" id="projects">
+  <div class="container-narrow">
+    <div class="text-center mb-5">
+      <h2 class="marker marker-center">Featured Projects</h2>
+    </div>
+    <div class="text-center">
+      <p class="mx-auto mb-4" style="max-width:600px">Open-source work I build in my own time, around the same problems I solve at work: governing LLM access, and turning models into products people use.</p>
+    </div>
+    <div class="card project-card mb-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="row g-0">
+        <div class="col-lg-5 project-media d-flex align-items-center p-3"><a href="https://github.com/faaizzz/aws-ai-gateway-with-litellm-poc" title="View on GitHub"><img class="img-fluid" src="images/projects/ai-gateway-architecture.svg" width="1952" height="1233" loading="lazy" alt="Target-state architecture of the AWS AI Gateway: apps call LiteLLM on ECS Fargate, which routes to Amazon Bedrock in the EU and sends traces to Langfuse"/></a></div>
+        <div class="col-lg-7">
+          <div class="card-body p-4">
+            <div class="text-uppercase text-small text-secondary fw-bolder mb-1">AI Gateway &middot; AWS &middot; Terraform</div>
+            <h3 class="h4 mb-2">AWS AI Gateway with LiteLLM</h3>
+            <p>A governed LLM gateway on AWS where a product team onboards an AI use case by editing one YAML file and opening a pull request. Terraform turns it into least-privilege IAM, an approved model route, a route-scoped gateway key and a budget; the gateway enforces them at runtime.</p>
+            <ul class="project-highlights text-small">
+              <li>LiteLLM on ECS Fargate in front of Amazon Bedrock (EU inference profiles), traced in Langfuse</li>
+              <li>Invalid use cases rejected at <code>terraform plan</code>: unknown route, wrong data classification, missing owner or budget</li>
+              <li>Proven against a live account: model override, bad key and disallowed model denied; budget exhausted returns a hard stop</li>
+              <li>CI on every PR: fmt, validate, 31 Terraform test runs, policy tests, tflint, trivy and plan</li>
+            </ul>
+            <div class="mb-3"><span class="badge project-tag">Terraform</span><span class="badge project-tag">LiteLLM</span><span class="badge project-tag">Amazon Bedrock</span><span class="badge project-tag">ECS Fargate</span><span class="badge project-tag">Langfuse</span><span class="badge project-tag">GitHub Actions</span></div><a class="btn btn-primary btn-sm shadow-sm hover-effect" href="https://github.com/faaizzz/aws-ai-gateway-with-litellm-poc"><i class="fab fa-github"></i> View on GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card project-card mb-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="row g-0">
+        <div class="col-lg-5 project-media d-flex align-items-center p-3"><a href="https://github.com/faaizzz/Bring-Your-Own-Podcast-BYOP" title="View on GitHub"><img class="img-fluid" src="images/projects/byop-dashboard.png" loading="lazy" alt="The BYOP dashboard: spend, episodes waiting for review, the latest episodes with a player and upcoming runs"/></a></div>
+        <div class="col-lg-7">
+          <div class="card-body p-4">
+            <div class="text-uppercase text-small text-secondary fw-bolder mb-1">Open source &middot; Generative AI &middot; Full stack</div>
+            <h3 class="h4 mb-2">BYOP &mdash; Bring Your Own Podcast</h3>
+            <p>A self-hosted app that turns the feeds, pages and searches you care about into a scheduled, multi-speaker AI podcast with its own public RSS feed. Bring your own model and voice keys, or run it all locally for free.</p>
+            <ul class="project-highlights text-small">
+              <li>Pipeline from sources to episode: collect, de-duplicate and rank stories, write a dialogue script, voice each speaker, mix with ffmpeg</li>
+              <li>Any LLM or TTS provider: OpenAI, ElevenLabs, OpenRouter, local Kokoro, or any OpenAI-compatible server</li>
+              <li>Cost tracking per call, run and show, Langfuse tracing, live run view, review before publishing</li>
+              <li>Docker Compose deploy; CI with lint, strict typing, unit and Playwright end-to-end tests</li>
+            </ul>
+            <div class="mb-3"><span class="badge project-tag">Python</span><span class="badge project-tag">FastAPI</span><span class="badge project-tag">Celery</span><span class="badge project-tag">PostgreSQL</span><span class="badge project-tag">React</span><span class="badge project-tag">TypeScript</span><span class="badge project-tag">Docker</span></div><a class="btn btn-primary btn-sm shadow-sm hover-effect" href="https://github.com/faaizzz/Bring-Your-Own-Podcast-BYOP"><i class="fab fa-github"></i> View on GitHub</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -444,6 +495,7 @@
           <ul class="nav justify-content-center">
             <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/faaiz.rissad" title="Instagram"><i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span></a></li>
             <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/faaiz-rissad/" title="LinkedIn"><i class="fab fa-linkedin"></i><span class="menu-title sr-only">LinkedIn</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="https://github.com/faaizzz" title="GitHub"><i class="fab fa-github"></i><span class="menu-title sr-only">GitHub</span></a></li>
           </ul>
         </nav>
       </div>
